@@ -1,0 +1,418 @@
+/* ==========================================
+   PALETTE DEFINITIONS & RESET (BRIGHT NEON)
+   ========================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    user-select: none;
+}
+
+:root {
+    --color-cyan: #00F0FF;          /* High-voltage cyan electric accents */
+    --color-neon-yellow: #CCFF00;   /* Bright radioactive yellow-green for info */
+    --color-indigo-panel: #1B1544;  /* Deep, vibrant royal purple for frames */
+    --color-magenta: #FF007F;       /* Intense hot pink for main interactions */
+    --color-bg-dark: #0D0B21;       /* Dark arcade background to boost luminosity */
+    --color-white: #FFFFFF;
+}
+
+body {
+    background-color: var(--color-bg-dark);
+    background-image: radial-gradient(circle at 50% 50%, var(--color-indigo-panel) 0%, var(--color-bg-dark) 100%);
+    color: var(--color-white);
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.screen {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.screen.active {
+    display: flex;
+}
+
+/* ==========================================
+   INTERACTIVE DECORATIVE MAIN MENU
+   ========================================== */
+.glass-panel {
+    background: rgba(27, 21, 68, 0.85); /* Indigo panel with high clarity transparency */
+    border: 3px solid var(--color-cyan);
+    border-radius: 28px;
+    box-shadow: 0 0 30px rgba(0, 240, 255, 0.25), inset 0 0 15px rgba(0, 240, 255, 0.1);
+    width: 100%;
+    z-index: 5;
+}
+
+.main-menu-panel, .difficulty-panel {
+    max-width: 480px; 
+    padding: 55px 30px; 
+    position: relative;
+    width: 90%; 
+}
+
+/* Scattered structural card decor background on home screen */
+.decor-cards-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.scattered-card {
+    position: absolute;
+    width: 70px;
+    height: 98px;
+    border-radius: 12px;
+    border: 3px solid var(--color-white);
+    box-shadow: 0 10px 25px rgba(255, 0, 127, 0.3);
+    opacity: 0.9;
+}
+
+.scatter-1 {
+    top: 12%; left: -20px;
+    background: var(--color-magenta);
+    transform: rotate(-25deg);
+}
+
+.scatter-2 {
+    bottom: -15px; left: 15%;
+    background: var(--color-indigo-panel);
+    border-color: var(--color-cyan);
+    transform: rotate(15deg);
+}
+
+.scatter-3 {
+    top: -30px; right: 20%;
+    background: var(--color-cyan);
+    border-color: var(--color-neon-yellow);
+    transform: rotate(-10deg);
+}
+
+.scatter-4 {
+    bottom: 20%; right: -25px;
+    background: var(--color-magenta);
+    transform: rotate(35deg);
+}
+
+.text-center { text-align: center; }
+
+.game-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3.0rem;
+    font-weight: 900;
+    line-height: 1.2;
+    letter-spacing: 2px;
+    color: var(--color-neon-yellow);
+    text-shadow: 0 0 15px rgba(204, 255, 0, 0.5);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.game-subtitle {
+    font-size: 0.95rem;
+    letter-spacing: 3px;
+    color: var(--color-cyan);
+    text-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+    text-transform: uppercase;
+    margin: 20px;
+    font-weight: 600;
+}
+
+.section-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.8rem;
+    color: var(--color-white);
+    text-shadow: 0 0 10px var(--color-cyan);
+    margin-bottom: 45px;
+    font-weight: 900;
+}
+
+/* ==========================================
+   BUTTON LAYOUTS (STRICT PAIR MATCH)
+   ========================================== */
+.btn {
+    cursor: pointer;
+    font-weight: 800;
+    border-radius: 16px;
+    outline: none;
+    text-align: center;
+    letter-spacing: 1px;
+    transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+}
+
+.btn-primary {
+    background: var(--color-magenta);
+    color: var(--color-white);
+    border: 3px solid var(--color-white);
+    box-shadow: 0 0 15px rgba(255, 0, 127, 0.4);
+    width: 100%;
+}
+
+.btn-primary:hover {
+    background: #ff2693;
+    transform: scale(1.02);
+    box-shadow: 0 0 25px rgba(255, 0, 127, 0.6);
+}
+
+.btn-primary:active {
+    transform: scale(0.98);
+}
+
+.main-action-btn {
+    padding: 20px;
+    font-size: 1.3rem;
+}
+
+.Selector-btn {
+    padding: 16px;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    background: transparent;
+    color: var(--color-cyan);
+    border: 3px solid var(--color-cyan);
+}
+
+.Selector-btn:hover {
+    background: var(--color-cyan);
+    border-color: var(--color-white);
+    color: var(--color-bg-dark);
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
+}
+.difficulty-options .btn:last-child { margin-bottom: 0; }
+
+.win-actions-row { 
+    display: flex; 
+    gap: 15px; 
+    width: 100%; 
+}
+
+.win-btn { 
+    flex: 1;
+    padding: 18px; 
+    font-size: 1rem; 
+}
+
+/* ==========================================
+   GAME PLAY PLACEMENT BAR HUD
+   ========================================== */
+#game-screen { justify-content: space-between; padding: 15px; }
+
+.setup-bar {
+    width: 100%;
+    max-width: 520px;
+    display: flex;
+    justify-content: space-around;
+    padding: 14px;
+    border-radius: 18px;
+    background: var(--color-indigo-panel);
+    border: 3px solid var(--color-cyan);
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+}
+
+.stat-box { display: flex; flex-direction: column; align-items: center; }
+.stat-label { font-size: 0.7rem; text-transform: uppercase; color: var(--color-cyan); letter-spacing: 1px; font-weight: 600; }
+.stat-value { font-size: 1.4rem; font-weight: 900; color: var(--color-neon-yellow); text-shadow: 0 0 10px rgba(204, 255, 0, 0.4); }
+
+.btn-control {
+    padding: 8px 22px;
+    font-size: 0.9rem;
+    background: transparent;
+    border: 2px solid var(--color-neon-yellow);
+    color: var(--color-neon-yellow);
+}
+.control-restart:hover { background: var(--color-neon-yellow); color: var(--color-bg-dark); border-color: var(--color-neon-yellow); }
+.control-exit:hover { background: var(--color-magenta); color: var(--color-white); border-color: var(--color-magenta); }
+
+/* ==========================================
+   SPACED SPATIAL LAYOUT GRID
+   ========================================== */
+#grid-container {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 0;
+}
+
+.grid {
+    display: grid;
+    gap: 20px;
+    justify-content: center;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.grid.easy { grid-template-columns: repeat(4, 80px); max-width: 420px; }
+.grid.medium { grid-template-columns: repeat(5, 80px); max-width: 520px; }
+.grid.hard { grid-template-columns: repeat(6, 80px); max-width: 620px; }
+
+/* ==========================================
+   CARDS LOOK & DESIGN (HIGH VIBRANCY ELECTRIFIED)
+   ========================================== */
+.card {
+    width: 80px;   
+    height: 112px; 
+    perspective: 1000px;
+    cursor: pointer;
+    position: relative;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.4s ease; 
+}
+
+.card.flipped .card-inner { 
+    transform: rotateY(180deg); 
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* Back Design: Vivid Neon Cyan frame with bright Yellow glowing question mark */
+.card-back {
+    background: var(--color-indigo-panel);
+    border: 4px solid var(--color-cyan);
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+}
+
+.card-back::after { 
+    content: "?"; 
+    font-size: 2.2rem; 
+    font-weight: 900;
+    color: var(--color-neon-yellow); 
+    text-shadow: 0 0 10px rgba(204, 255, 0, 0.7);
+}
+
+/* Front Design Layout: High-contrast pure white inner card with a hot magenta border frame */
+.card-front {
+    background: var(--color-white); 
+    border: 4px solid var(--color-magenta);
+    transform: rotateY(180deg);
+    font-size: 2.3rem;
+}
+
+/* ==========================================
+   VICTORY DIALOG BOX
+   ========================================== */
+.victory-title { font-family: 'Orbitron', sans-serif; font-size: 2.2rem; color: var(--color-neon-yellow); text-shadow: 0 0 15px rgba(204, 255, 0, 0.5); margin-bottom: 30px; font-weight: 900; }
+
+.final-stats {
+    background: var(--color-indigo-panel);
+    border-radius: 20px;
+    padding: 24px 32px;
+    margin-bottom: 35px;
+    border: 3px solid var(--color-cyan);
+    display: grid;
+    grid-template-columns: auto auto; 
+    row-gap: 16px;
+    column-gap: 25px;
+}
+.final-stat-item { display: contents; }
+.final-stat-item span { text-align: left; font-size: 0.95rem; color: var(--color-cyan); font-weight: 700; letter-spacing: 1px; }
+.final-stat-item strong { text-align: right; font-size: 1.3rem; color: var(--color-white); font-weight: 900; }
+
+/* ==========================================
+   COMPLETE MOBILE RESPONSIVE ADAPTATION OVERHAUL
+   ========================================== */
+@media (max-width: 480px) {
+    /* 1. Reset Global Alignment to Center Menus Vertically */
+    body {
+        align-items: center; /* Centers menu panels on screen */
+        overflow-y: auto;
+    }
+    
+    .screen {
+        padding: 12px;
+        justify-content: center; /* Default back to centering menus */
+        min-height: 100vh;
+    }
+
+    /* Override gameplay screen specifically to flow from top to allow scrolling without clipping buttons */
+    #game-screen {
+        justify-content: flex-start !important; 
+        padding-top: 20px;
+    }
+
+    .main-menu-panel, .difficulty-panel {
+        padding: 40px 20px;
+        margin: 0 auto;
+    }
+
+    /* 2. Fix Game Title multi-line break layout */
+    .game-title { 
+        font-size: 1.8rem; 
+        letter-spacing: 1px; 
+        white-space: nowrap; /* Keeps "CARD MATCH GAME" beautifully bounded on one line */
+    }
+    .game-subtitle { margin: 10px 0 35px 0; font-size: 0.85rem; }
+
+    /* 3. Container-relative Grid Scaling (Prevents Cards Overlapping & Spilling) */
+    #grid-container {
+        width: 100%;
+        padding: 10px 0;
+        /* Container Query Unit anchor to calculate safe structural widths */
+        container-type: inline-size; 
+    }
+
+    .grid { 
+        gap: 8px; 
+        width: 100%;
+    } 
+    
+    /* Calculate precise card widths based on the phone's actual width */
+    .grid.easy { grid-template-columns: repeat(4, 1fr); max-width: 100%; }
+    .grid.medium { grid-template-columns: repeat(5, 1fr); max-width: 100%; }
+    .grid.hard { grid-template-columns: repeat(6, 1fr); max-width: 100%; }
+    
+    /* Hardcoded height logic using viewport width to ensure cards NEVER collapse or overlap */
+    .card {
+        width: 100%;
+        height: auto;
+        /* This forces a clean, locked 3:4 aspect ratio frame relative to its width */
+        aspect-ratio: 3 / 4.2; 
+    }
+    
+    .card-front, .card-back { border-width: 2px; }
+    .card-back::after { font-size: 1.2rem; }
+    .card-front { font-size: 1.3rem; }
+
+    /* Clean HUD spacing for small screens */
+    .setup-bar {
+        padding: 10px;
+    }
+    .stat-value { font-size: 1.1rem; }
+    .btn-control { padding: 6px 14px; font-size: 0.8rem; }
+}
